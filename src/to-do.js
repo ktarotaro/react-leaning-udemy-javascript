@@ -22,14 +22,21 @@ const onClickAdd = () => {
   const completeButton = document.createElement("button");
   completeButton.innerText = "完了";
   completeButton.addEventListener("click", () => {
-    alert("完了");
+    //押された完了ボタンの親タグ（li）を未完了リストから削除してTODOリストへ移動
+    const completeTarget = completeButton.parentNode.parentNode;
+    console.log(completeTarget);
+    document.getElementById("incomlete-list").removeChild(completeTarget);
+    document.getElementById("comlete-list").appendChild(completeTarget);
   });
 
   //button（削除）タグ生成
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "削除";
   deleteButton.addEventListener("click", () => {
-    alert("削除");
+    //押された削除ボタンの親タグ(li)を未完了リストから削除
+    const deleteTarget = deleteButton.parentNode.parentNode;
+    // console.log(deleteTarget);
+    document.getElementById("incomlete-list").removeChild(deleteTarget);
   });
 
   //liタグの子要素に各要素を設定
@@ -39,8 +46,6 @@ const onClickAdd = () => {
   div.appendChild(paragraph);
   div.appendChild(completeButton);
   div.appendChild(deleteButton);
-
-  console.log(li);
 
   //未完了のリストに追加
   document.getElementById("incomlete-list").appendChild(li);
