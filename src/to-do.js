@@ -1,5 +1,6 @@
 import "./styles.css";
 
+//追加ボタンを押した際の挙動の関数
 const onClickAdd = () => {
   //テキストボックスの値を取得し、初期化する
   const inputText = document.getElementById("add-text").value;
@@ -37,10 +38,6 @@ const onClickAdd = () => {
     //li生成
     const li = document.createElement("li");
 
-    //div生成
-    const div = document.createElement("div");
-    div.className = "list-row";
-
     //pタグ生成
     const paragraph = document.createElement("p");
     paragraph.innerText = addText;
@@ -50,12 +47,14 @@ const onClickAdd = () => {
     backButton.innerText = "戻す";
 
     //liタグの子要素に各要素を設定
-    li.appendChild(div);
+    li.appendChild(addTarget);
 
     //divタグの子要素に各要素を設定
-    div.appendChild(paragraph);
-    div.appendChild(backButton);
-    console.log(li);
+    addTarget.appendChild(paragraph);
+    addTarget.appendChild(backButton);
+
+    //完了リストに追加
+    document.getElementById("comlete-list").appendChild(li);
   });
 
   //button（削除）タグ生成
@@ -74,7 +73,7 @@ const onClickAdd = () => {
   div.appendChild(completeButton);
   div.appendChild(deleteButton);
 
-  //未完了リストから指定の要素を削除
+  //未完了リストから指定の要素を削除する関数を定義
   const deleteFromIncompleteList = (target) => {
     document.getElementById("incomlete-list").removeChild(target);
   };
